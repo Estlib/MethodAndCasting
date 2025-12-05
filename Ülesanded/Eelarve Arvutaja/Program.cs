@@ -18,23 +18,25 @@
             string sisestus = "";
             Console.WriteLine("Sisesta tulud ükshaaval, kui on kõik, siis kirjuta \"rohkem pole\"");
             List<float> tulud = VõtaKasutajaltMituSisenditJärjest();
+            Console.WriteLine("Sisesta OMA KULUD ükshaaval, kui on kõik, siis kirjuta \"rohkem pole\"");
             List<float> kulud = VõtaKasutajaltMituSisenditJärjest();
 
             //tee uus meetod, mis arvutab kokku järjendi sisu
 
-            float kokku = 0;
-            kokku = ArvutaKokku(tulud, kokku);
+            float tuludkokku = 0;
+            tuludkokku = ArvutaKokku(tulud);
+            float kuludkokku = ArvutaKokku(kulud);
 
             //hoia kogutulusid ja kogukulusid eraldi muutujates kasutades oma meetodit.
-
             //arvuta kasutajale tulude ja kulude põhjal tema hetkeseis.
-
+            float kokku = (float)Math.Round((tuludkokku - kuludkokku),2);
             //Ümarda kasutajale tagastatav arv kahe komakohani. Ja kuva nimeline sõnum
-
+            Console.WriteLine($"Kasutaja: {kasutajaNimi}, teie kontoseis on: {kokku}"); //               l o o g e l i s e d    s u l u d
         }
 
-        private static float ArvutaKokku(List<float> tulud, float kokku)
+        private static float ArvutaKokku(List<float> tulud)
         {
+            float kokku = 0;
             for (int i = 0; i < tulud.Count; i++)
             {
                 kokku += tulud[i];
